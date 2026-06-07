@@ -934,17 +934,29 @@
       transform-origin: center;
     }
 
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav-hamburger.open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
 
     /* ── MOBILE DRAWER ── */
     .mobile-menu {
       display: none;
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       z-index: 150;
-      background: rgba(10,13,18,0.97);
+      background: rgba(10, 13, 18, 0.97);
       backdrop-filter: blur(16px);
       flex-direction: column;
       align-items: center;
@@ -952,7 +964,9 @@
       gap: 2rem;
     }
 
-    .mobile-menu.open { display: flex; }
+    .mobile-menu.open {
+      display: flex;
+    }
 
     .mobile-menu a {
       font-family: var(--mono);
@@ -965,11 +979,15 @@
       transition: color .2s, transform .2s;
     }
 
-    .mobile-menu a:hover { color: var(--accent); transform: translateX(8px); }
+    .mobile-menu a:hover {
+      color: var(--accent);
+      transform: translateX(8px);
+    }
 
     .mobile-menu-close {
       position: absolute;
-      top: 1.4rem; right: 1.5rem;
+      top: 1.4rem;
+      right: 1.5rem;
       font-family: var(--mono);
       font-size: 13px;
       color: var(--muted);
@@ -983,13 +1001,34 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .about-grid { grid-template-columns: 1fr; }
-      .about-card { position: static; }
-      .contact-grid { grid-template-columns: 1fr; }
-      nav .nav-links { display: none; }
-      nav .nav-hamburger { display: flex; }
-      h1 { font-size: 2rem; }
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-card {
+        position: static;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav .nav-links {
+        display: none;
+      }
+
+      nav .nav-hamburger {
+        display: flex;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
@@ -999,11 +1038,11 @@
   <!-- MOBILE MENU DRAWER -->
   <div class="mobile-menu" id="mobileMenu">
     <button class="mobile-menu-close" onclick="closeMobileMenu()">&#10005; close</button>
-    <a href="#about"      onclick="closeMobileMenu()">About</a>
-    <a href="#skills"     onclick="closeMobileMenu()">Skills</a>
+    <a href="#about" onclick="closeMobileMenu()">About</a>
+    <a href="#skills" onclick="closeMobileMenu()">Skills</a>
     <a href="#experience" onclick="closeMobileMenu()">Experience</a>
-    <a href="#projects"   onclick="closeMobileMenu()">Projects</a>
-    <a href="#contact"    onclick="closeMobileMenu()">Contact</a>
+    <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+    <a href="#contact" onclick="closeMobileMenu()">Contact</a>
   </div>
 
   <!-- NAV -->
@@ -1061,8 +1100,7 @@
                 Co-branded Credit"</span>,</div>
             <div class="t-out">&nbsp;&nbsp;<span class="t-blue">"stack"</span>: [<span class="t-green">"Java"</span>,
               <span class="t-green">"Spring Boot"</span>, <span class="t-green">"AWS"</span>, <span
-                class="t-green">"Grafana"</span>, <span class="t-green">"Loki"</span>],
-            </div>
+                class="t-green">"Grafana"</span>, <span class="t-green">"Loki"</span>],</div>
             <div class="t-out">&nbsp;&nbsp;<span class="t-blue">"status"</span>: <span
                 class="t-green">"open_to_work"</span></div>
             <div class="t-out">}</div>
@@ -1108,13 +1146,13 @@
             <h2 class="sec-title">Backend engineer<br>by passion</h2>
           </div>
           <div class="fade-up">
-            <p>Java Backend Engineer with <strong>2+ years</strong> worked on production microservices for a co-branded
-              credit card platform at <strong>Saven Technologies Ltd</strong>.</p>
+            <p>Java Backend Engineer with <strong>2+ years</strong> building production microservices for a co-branded
+              credit card platform at <strong>Saven Technologies</strong>.</p>
             <p>I work on <strong>RESTful APIs</strong> with Spring Boot, async event pipelines via <strong>AWS
                 SQS</strong>, and production observability using <strong>Grafana, Loki &amp; Percona</strong>.</p>
-            <p><strong>B.Tech Computer Science and Engineering</strong> graduate from St. Johns College of Engineering,
-              Jawaharlal Nehru
-              Technological University Anantapur (2020–2024).</p>
+            <p><strong>B.Tech CSE</strong> graduate from St. Johns College of Engineering, Jawaharlal Nehru
+              Technological University Anantapur (2020–2024). Currently open to backend engineering roles in FinTech or
+              product companies.</p>
           </div>
         </div>
       </div>
@@ -1132,7 +1170,7 @@
         <div class="skill-group fade-up">
           <div class="skill-group-label">Core Language</div>
           <div class="skill-tags">
-            <span class="skill-tag hot">Java</span>
+            <span class="skill-tag hot">Java 17</span>
             <span class="skill-tag">SQL</span>
           </div>
         </div>
@@ -1176,7 +1214,6 @@
         <div class="skill-group fade-up">
           <div class="skill-group-label">Dev Tools</div>
           <div class="skill-tags">
-            <span class="skill-tag hot">Intellij Idea</span>
             <span class="skill-tag">Git / GitHub</span>
             <span class="skill-tag">CI/CD</span>
             <span class="skill-tag">Postman</span>
@@ -1192,7 +1229,7 @@
   <section id="experience">
     <div class="container">
       <div class="sec-header fade-up">
-        <div class="sec-tag">work experience</div>
+        <div class="sec-tag">// work experience</div>
         <h2 class="sec-title">Where I've worked</h2>
       </div>
       <div class="exp-timeline">
@@ -1205,7 +1242,7 @@
           <div class="exp-domain">FinTech · Co-branded Credit Card</div>
           <ul class="exp-bullets">
             <li>Worked on <strong>RESTful microservices</strong> for a co-branded credit card platform — card issuance,
-              card management system, and account onboarding workflows integrated with <strong>third-party
+              card management system, and account onboarding workflows integrated with <strong>third-party bank
                 APIs</strong>.</li>
             <li>Worked on <strong>transaction processing</strong> pipelines integrated with <strong>third-party payment
                 network APIs</strong> — normalising external data into internal domain models with error handling and
@@ -1214,26 +1251,25 @@
               decoupling card events from billing and notification downstream systems.</li>
             <li>Worked with <strong>Grafana &amp; Loki</strong> monitoring infrastructure — structured logging,
               service-health dashboards, and alerting rules that significantly reduced production MTTD.</li>
-            <li>Managed and monitored <strong>MySQL</strong> databases using <strong>Percona</strong> — query
-              performance analysis, slow query detection, and DB health monitoring in production.</li>
             <li>Leveraged <strong>AWS S3, EC2, Glue, CloudWatch, and Secrets Manager</strong> across the platform for
-              storage, compute, ETL pipelines, monitoring.</li>
+              storage, compute, ETL pipelines, monitoring, and secure config management.</li>
             <li>Deployed and maintained services via <strong>CI/CD pipelines</strong> — participated in environment
               configuration and release management.</li>
             <li>Maintained code quality using <strong>SonarQube</strong>; participated in Agile sprints, code reviews,
               and cross-functional team collaboration.</li>
+            <li>Managed and monitored <strong>MySQL</strong> databases using <strong>Percona</strong> — query
+              performance analysis, slow query detection, and DB health monitoring in production.</li>
           </ul>
           <div class="exp-stack">
             <span class="stack-tag">Java</span>
             <span class="stack-tag">Spring Boot</span>
+               <span class="stack-tag">Spring Data Jpa</span>
             <span class="stack-tag">Microservices</span>
-            <span class="stack-tag">AWS SQS</span>
-            <span class="stack-tag">AWS S3</span>
+            <span class="stack-tag">AWS</span>
             <span class="stack-tag">Grafana</span>
             <span class="stack-tag">Loki</span>
-            <span class="stack-tag">Percona</span>
             <span class="stack-tag">MySQL</span>
-            <span class="stack-tag">Hibernate</span>
+            <span class="stack-tag">Percona</span>
           </div>
         </div>
 
@@ -1312,7 +1348,7 @@
             <span class="project-icon">&#128179;</span>
             <span class="project-badge">Production</span>
           </div>
-          <div class="project-title">Co-branded Credit Card</div>
+          <div class="project-title">Co-branded Credit Card Platform</div>
           <p class="project-desc">Backend microservices for a FinTech co-branded credit card product — user onboarding
             via third-party bank APIs, card issuance, card management system, transaction processing via third-party
             payment network APIs, and DB management using Percona.</p>
@@ -1421,13 +1457,12 @@
       <div class="contact-grid">
         <div>
           <div class="sec-header fade-up">
-            <div class="sec-tag">contact</div>
+            <div class="sec-tag">// contact</div>
             <h2 class="sec-title">Let's connect</h2>
           </div>
           <p class="fade-up" style="color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:2rem">
             I'm actively looking for Java Backend / Software Engineer roles in FinTech, product companies, or startups
-            in Hyderabad, Bangaluru or remote. Feel free to reach out for opportunities, collaborations, or just a tech
-            chat.
+            in Hyderabad or remote. Feel free to reach out for opportunities, collaborations, or just a tech chat.
           </p>
           <div class="contact-links fade-up">
             <a href="mailto:yaseeralur03@gmail.com" class="contact-link"><span
@@ -1495,9 +1530,58 @@
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
 
+    /* ── CONTACT FORM — AJAX (no redirect) ── */
+    document.getElementById('contact-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const btn = document.getElementById('submit-btn');
+      const error = document.getElementById('form-error');
+
+      // loading state
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      error.style.display = 'none';
+
+      const data = new FormData();
+      data.append('name', document.getElementById('f-name').value);
+      data.append('email', document.getElementById('f-email').value);
+      data.append('message', document.getElementById('f-message').value);
+      data.append('_captcha', 'false');
+      data.append('_subject', 'Portfolio Contact - New Message');
+
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/yaseeralur03@gmail.com', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: data
+        });
+
+        if (res.ok) {
+          // show success, hide form
+          document.getElementById('contact-form').style.display = 'none';
+          document.getElementById('form-success').style.display = 'flex';
+        } else {
+          throw new Error('Failed');
+        }
+      } catch {
+        error.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Send Message →';
+      }
+    });
+
+    function resetForm() {
+      document.getElementById('contact-form').reset();
+      document.getElementById('contact-form').style.display = '';
+      document.getElementById('form-success').style.display = 'none';
+      document.getElementById('submit-btn').disabled = false;
+      document.getElementById('submit-btn').textContent = 'Send Message →';
+    }
+
+    /* ── MOBILE MENU ── */
     function toggleMobileMenu() {
       const menu = document.getElementById('mobileMenu');
-      const btn  = document.getElementById('hamburger');
+      const btn = document.getElementById('hamburger');
       menu.classList.toggle('open');
       btn.classList.toggle('open');
       document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
@@ -1509,6 +1593,7 @@
       document.body.style.overflow = '';
     }
 
+    /* ── FADE-UP OBSERVER ── */
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
