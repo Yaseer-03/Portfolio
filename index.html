@@ -1,445 +1,1214 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<title>Yaseer's Portfolio</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yaseer | Java Backend Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0d12;
+      --bg2: #0f1419;
+      --bg3: #151c25;
+      --accent: #00e5ff;
+      --accent2: #7c3aed;
+      --green: #22c55e;
+      --amber: #f59e0b;
+      --red: #ef4444;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --border: rgba(255,255,255,0.07);
+      --mono: 'Space Mono', monospace;
+      --sans: 'DM Sans', sans-serif;
+    }
 
-	<meta property="og:title" content="Page Tile" />
-	<meta property="og:description" content="Personal Site" />
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-	<link rel="stylesheet" href="css/animate.css">
-	<link rel="icon" href="./favicon_io/favicon-16x16.png" type="image/icon type">
+    html { scroll-behavior: smooth; }
 
-	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
-	<link rel="stylesheet" href="css/magnific-popup.css">
-	<link rel="stylesheet" href="css/aos.css">
-	<link rel="stylesheet" href="css/flaticon.css">
-	<link rel="stylesheet" href="css/icomoon.css">
-	<link rel="stylesheet" href="css/style.css">
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── GRID BG ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10,13,18,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: .04em;
+    }
+
+    .nav-logo span { color: var(--muted); }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── SECTIONS ── */
+    section { position: relative; z-index: 1; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-family: var(--mono);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 .name { color: var(--text); }
+    h1 .role { color: var(--accent); display: block; }
+
+    .hero-desc {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 440px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .75rem 1.75rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0a0d12;
+      font-weight: 700;
+    }
+
+    .btn-primary:hover { background: #33eaff; transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── TERMINAL CARD ── */
+    .terminal {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      font-family: var(--mono);
+    }
+
+    .terminal-bar {
+      background: var(--bg3);
+      padding: .75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #ef4444; }
+    .dot-y { background: #f59e0b; }
+    .dot-g { background: #22c55e; }
+
+    .terminal-title {
+      font-size: 11px;
+      color: var(--muted);
+      margin-left: .5rem;
+    }
+
+    .terminal-body { padding: 1.5rem; font-size: 13px; line-height: 2; }
+    .t-prompt { color: var(--accent); }
+    .t-cmd { color: var(--text); }
+    .t-out { color: var(--muted); padding-left: 1rem; }
+    .t-green { color: var(--green); }
+    .t-amber { color: var(--amber); }
+    .t-blue { color: #60a5fa; }
+    .t-purple { color: #a78bfa; }
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 14px;
+      background: var(--accent);
+      animation: blink 1s step-end infinite;
+      vertical-align: middle;
+      margin-left: 2px;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ── SECTION HEADER ── */
+    .sec-header {
+      margin-bottom: 3rem;
+    }
+
+    .sec-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+    }
+
+    .sec-title {
+      font-family: var(--mono);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* ── ABOUT ── */
+    #about { padding: 7rem 0; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      position: sticky;
+      top: 100px;
+    }
+
+    .avatar-ring {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 24px;
+      font-weight: 700;
+      color: #0a0d12;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-name {
+      font-family: var(--mono);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .25rem;
+    }
+
+    .about-role {
+      font-size: 13px;
+      color: var(--accent);
+      font-family: var(--mono);
+      margin-bottom: 1.5rem;
+    }
+
+    .info-row {
+      display: flex;
+      gap: .75rem;
+      font-size: 13px;
+      padding: .5rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+
+    .info-row:last-child { border-bottom: none; }
+
+    .info-label {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 11px;
+      min-width: 72px;
+      padding-top: 2px;
+    }
+
+    .info-val { color: var(--text); font-size: 13px; }
+
+    .status-dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 6px var(--green);
+      animation: pulse-dot 2s ease-in-out infinite;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    @keyframes pulse-dot {
+      0%,100%{ box-shadow: 0 0 4px var(--green); }
+      50%{ box-shadow: 0 0 10px var(--green); }
+    }
+
+    .about-text p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.9;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-text strong { color: var(--text); font-weight: 500; }
+
+    /* ── SKILLS ── */
+    #skills { padding: 7rem 0; background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .skill-group {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: border-color .2s;
+    }
+
+    .skill-group:hover { border-color: rgba(0,229,255,.25); }
+
+    .skill-group-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .skill-group-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .skill-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+
+    .skill-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: .3rem .7rem;
+      border-radius: 4px;
+      background: var(--bg3);
+      color: var(--text);
+      border: 1px solid var(--border);
+      letter-spacing: .04em;
+      transition: all .15s;
+    }
+
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+    .skill-tag.hot { border-color: rgba(0,229,255,.3); color: var(--accent); background: rgba(0,229,255,.05); }
+
+    /* ── EXPERIENCE ── */
+    #experience { padding: 7rem 0; }
+
+    .exp-timeline { position: relative; }
+
+    .exp-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+
+    .exp-item {
+      padding-left: 2rem;
+      padding-bottom: 3rem;
+      position: relative;
+    }
+
+    .exp-item::before {
+      content: '';
+      position: absolute;
+      left: -4px;
+      top: 6px;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    .exp-period {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: .1em;
+      margin-bottom: .5rem;
+    }
+
+    .exp-title {
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .25rem;
+    }
+
+    .exp-company {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: .25rem;
+    }
+
+    .exp-domain {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: .2rem .6rem;
+      background: rgba(124,58,237,.15);
+      border: 1px solid rgba(124,58,237,.3);
+      border-radius: 3px;
+      color: #a78bfa;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .exp-bullets { list-style: none; }
+
+    .exp-bullets li {
+      font-size: 14px;
+      color: var(--muted);
+      padding: .4rem 0;
+      padding-left: 1.25rem;
+      position: relative;
+      line-height: 1.7;
+    }
+
+    .exp-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 11px;
+      top: .5rem;
+    }
+
+    .exp-bullets strong { color: var(--text); font-weight: 500; }
+
+    .exp-stack { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
+
+    .stack-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: .2rem .55rem;
+      border-radius: 3px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    /* ── PROJECTS ── */
+    #projects { padding: 7rem 0; background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .project-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity .2s;
+    }
+
+    .project-card:hover { border-color: rgba(0,229,255,.2); transform: translateY(-3px); }
+    .project-card:hover::before { opacity: 1; }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .project-icon {
+      font-family: var(--mono);
+      font-size: 22px;
+    }
+
+    .project-badge {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: .2rem .6rem;
+      border-radius: 3px;
+      background: rgba(34,197,94,.1);
+      border: 1px solid rgba(34,197,94,.25);
+      color: var(--green);
+      letter-spacing: .06em;
+    }
+
+    .project-title {
+      font-family: var(--mono);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .5rem;
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── CERTIFICATIONS ── */
+    #certs { padding: 7rem 0; }
+
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .cert-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: border-color .2s;
+    }
+
+    .cert-card:hover { border-color: rgba(0,229,255,.25); }
+
+    .cert-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .cert-name {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: .25rem;
+    }
+
+    .cert-issuer {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ── CONTACT ── */
+    #contact { padding: 7rem 0; background: var(--bg2); border-top: 1px solid var(--border); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-text h2 {
+      font-family: var(--mono);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .contact-text p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .contact-links { display: flex; flex-direction: column; gap: .75rem; }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .contact-link:hover { color: var(--accent); }
+
+    .contact-link-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .contact-form-wrap {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .form-group { margin-bottom: 1.25rem; }
+
+    .form-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: .4rem;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: .75rem 1rem;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 14px;
+      transition: border-color .2s;
+      outline: none;
+    }
+
+    .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
+    .form-textarea { resize: vertical; min-height: 120px; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    footer span { color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-card { position: static; }
+      .contact-grid { grid-template-columns: 1fr; }
+      nav .nav-links { display: none; }
+      h1 { font-size: 2rem; }
+    }
+  </style>
 </head>
+<body>
 
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#hero">AMY<span>.dev</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-tag">Available for opportunities</div>
+          <h1>
+            <span class="name">Alur Mohammed<br>Yaseer</span>
+            <span class="role">Java Backend Engineer</span>
+          </h1>
+          <p class="hero-desc">
+            Building robust, scalable backend systems for the FinTech domain.
+            2+ years delivering production APIs, microservices & observability pipelines
+            at <strong style="color:var(--text)">Saven Technologies</strong>.
+          </p>
+          <div class="hero-btns">
+            <a href="#contact" class="btn btn-primary">Get in touch</a>
+            <a href="#experience" class="btn btn-outline">View experience</a>
+          </div>
+        </div>
 
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="dot dot-r"></span>
+            <span class="dot dot-y"></span>
+            <span class="dot dot-g"></span>
+            <span class="terminal-title">yaseer@saven ~ $ profile.sh</span>
+          </div>
+          <div class="terminal-body">
+            <div><span class="t-prompt">❯ </span><span class="t-cmd">cat profile.json</span></div>
+            <div class="t-out">{</div>
+            <div class="t-out">&nbsp;&nbsp;<span class="t-blue">"name"</span>: <span class="t-green">"Alur Mohammed Yaseer"</span>,</div>
+            <div class="t-out">&nbsp;&nbsp;<span class="t-blue">"role"</span>: <span class="t-green">"Java Backend Engineer"</span>,</div>
+            <div class="t-out">&nbsp;&nbsp;<span class="t-blue">"experience"</span>: <span class="t-amber">"2 years"</span>,</div>
+            <div class="t-out">&nbsp;&nbsp;<span class="t-blue">"domain"</span>: <span class="t-green">"FinTech / Co-branded Credit"</span>,</div>
+            <div class="t-out">&nbsp;&nbsp;<span class="t-blue">"stack"</span>: [<span class="t-green">"Spring Boot"</span>, <span class="t-green">"AWS"</span>, <span class="t-green">"Grafana"</span>],</div>
+            <div class="t-out">&nbsp;&nbsp;<span class="t-blue">"status"</span>: <span class="t-green">"open_to_work"</span></div>
+            <div class="t-out">}</div>
+            <br>
+            <div><span class="t-prompt">❯ </span><span class="t-cmd">ping service-b --circuit-breaker<span class="cursor"></span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
-		<div class="container">
-			<a class="navbar-brand" href="index.html">Portfolio</a>
-			<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
-				data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="oi oi-menu"></span>  &lt;/>
-			</button>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-card fade-up">
+          <div class="avatar-ring">AMY</div>
+          <div class="about-name">Alur Mohammed Yaseer</div>
+          <div class="about-role">Junior Software Engineer</div>
+          <div class="info-row">
+            <span class="info-label">Company</span>
+            <span class="info-val">Saven Technologies Ltd</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Location</span>
+            <span class="info-val">Hyderabad, India</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Email</span>
+            <span class="info-val">yaseeralur03@gmail.com</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Phone</span>
+            <span class="info-val">+91 7386861647</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Status</span>
+            <span class="info-val"><span class="status-dot"></span>Open to work</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">LinkedIn</span>
+            <span class="info-val"><a href="https://www.linkedin.com/in/alur-mohammed-yaseer-43b249217/" target="_blank" style="color:var(--accent);text-decoration:none">alur-mohammed-yaseer</a></span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">GitHub</span>
+            <span class="info-val"><a href="https://github.com/Yaseer-03" target="_blank" style="color:var(--accent);text-decoration:none">Yaseer-03</a></span>
+          </div>
+          <br>
+          <a href="https://yaseer-03.github.io/Portfolio/" class="btn btn-outline" style="width:100%;justify-content:center;font-size:11px">Portfolio Site ↗</a>
+        </div>
 
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav nav ml-auto">
-					<li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
-					<li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
-					<li class="nav-item"><a href="#page-3" class="nav-link"><span>Skills</span></a></li>
-					<li class="nav-item"><a href="#certificate-section" class="nav-link"><span>Achievements</span></a>
-					</li>
-					<li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+        <div class="about-text">
+          <div class="sec-header fade-up">
+            <div class="sec-tag">// about me</div>
+            <h2 class="sec-title">Backend engineer<br>by passion</h2>
+          </div>
+          <div class="fade-up">
+            <p>
+              I'm a Java Backend Engineer with <strong>2+ years of production experience</strong> building and maintaining microservices for a co-branded credit card platform at Saven Technologies. My work sits at the intersection of <strong>high-reliability APIs, event-driven architecture, and real-time observability</strong>.
+            </p>
+            <p>
+              My day-to-day involves designing RESTful microservices with <strong>Spring Boot</strong>, integrating <strong>AWS SQS</strong> for async event pipelines, and maintaining production health through <strong>Grafana & Loki</strong> dashboards I built from scratch. I take pride in writing code that's observable — if something breaks at 2 AM, my alerts catch it first.
+            </p>
+            <p>
+              I'm a <strong>B.Tech Computer Science graduate</strong> from St. Johns College of Engineering (JNTUA, 2020–2024), and I've been coding seriously since college — from Java internships to production FinTech systems.
+            </p>
+            <p>
+              Currently exploring opportunities in product companies and FinTech startups where I can grow into a <strong>mid-level backend engineer</strong> role.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="sec-header fade-up">
+        <div class="sec-tag">// technical skills</div>
+        <h2 class="sec-title">What I work with</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-group fade-up">
+          <div class="skill-group-label">Core Language</div>
+          <div class="skill-tags">
+            <span class="skill-tag hot">Java 8/11</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Bash</span>
+          </div>
+        </div>
+        <div class="skill-group fade-up">
+          <div class="skill-group-label">Frameworks</div>
+          <div class="skill-tags">
+            <span class="skill-tag hot">Spring Boot</span>
+            <span class="skill-tag hot">Spring MVC</span>
+            <span class="skill-tag">Hibernate / JPA</span>
+            <span class="skill-tag">Microservices</span>
+            <span class="skill-tag">REST APIs</span>
+          </div>
+        </div>
+        <div class="skill-group fade-up">
+          <div class="skill-group-label">AWS Cloud</div>
+          <div class="skill-tags">
+            <span class="skill-tag hot">SQS</span>
+            <span class="skill-tag hot">S3</span>
+            <span class="skill-tag">EC2</span>
+            <span class="skill-tag">Glue</span>
+            <span class="skill-tag">CloudWatch</span>
+            <span class="skill-tag">Secrets Manager</span>
+          </div>
+        </div>
+        <div class="skill-group fade-up">
+          <div class="skill-group-label">Observability</div>
+          <div class="skill-tags">
+            <span class="skill-tag hot">Grafana</span>
+            <span class="skill-tag hot">Loki</span>
+            <span class="skill-tag">Dashboards</span>
+            <span class="skill-tag">Alerting</span>
+          </div>
+        </div>
+        <div class="skill-group fade-up">
+          <div class="skill-group-label">Databases</div>
+          <div class="skill-tags">
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">PostgreSQL</span>
+          </div>
+        </div>
+        <div class="skill-group fade-up">
+          <div class="skill-group-label">Dev Tools</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Git / GitHub</span>
+            <span class="skill-tag">Jenkins</span>
+            <span class="skill-tag">Postman</span>
+            <span class="skill-tag">SonarQube</span>
+            <span class="skill-tag">Maven</span>
+            <span class="skill-tag">Gradle</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	<!-- particles -->
-	<div id="particles-js"></div>
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <div class="sec-header fade-up">
+        <div class="sec-tag">// work experience</div>
+        <h2 class="sec-title">Where I've worked</h2>
+      </div>
 
-	<section class="hero-wrap js-fullheight">
-		<div class="container">
-			<div class="row no-gutters slider-text js-fullheight justify-content-center align-items-center">
-				<div class="col-lg-8 col-md-6 ftco-animate d-flex align-items-center">
-					<div class="text text-center">
-						<span class="subheading">Hey There...!</span>
-						<h1>It's Yaseer</h1>
-<h2>I'm fascinated with 
-    <span class="txt-rotate" data-period="2000"
-        data-rotate='["Java Development", "Spring Boot", "Hibernate", "MySQL", "Postman", "Backend Development"]'></span>
-</h2>
+      <div class="exp-timeline">
+        <div class="exp-item fade-up">
+          <div class="exp-period">JUL 2022 — PRESENT · 2 YEARS</div>
+          <div class="exp-title">Junior Software Engineer</div>
+          <div class="exp-company">Saven Technologies Ltd · Hyderabad, India</div>
+          <div class="exp-domain">FinTech · Co-branded Credit Card Platform</div>
+          <ul class="exp-bullets">
+            <li>Designed and developed <strong>RESTful microservices</strong> for a co-branded credit card platform handling card issuance, transaction processing, and account management workflows.</li>
+            <li>Integrated <strong>AWS SQS</strong> for asynchronous, event-driven communication between services — decoupling card events from billing and notification downstream systems.</li>
+            <li>Built <strong>Grafana & Loki</strong> monitoring infrastructure from scratch: structured logging, service-health dashboards, and alerting rules that significantly reduced production MTTD.</li>
+            <li>Leveraged <strong>AWS S3, EC2, Glue, CloudWatch, and Secrets Manager</strong> across the platform for storage, compute, ETL pipelines, monitoring, and secure config management.</li>
+            <li>Deployed and maintained services via <strong>Jenkins CI/CD pipelines</strong> — participated in environment configuration and release management.</li>
+            <li>Built adapters for <strong>third-party bank and payment network integrations</strong>, normalising external data into internal domain models.</li>
+            <li>Maintained code quality using <strong>SonarQube</strong>; participated in Agile sprints, code reviews, and cross-functional team collaboration.</li>
+          </ul>
+          <div class="exp-stack">
+            <span class="stack-tag">Java 11</span>
+            <span class="stack-tag">Spring Boot</span>
+            <span class="stack-tag">Microservices</span>
+            <span class="stack-tag">AWS SQS</span>
+            <span class="stack-tag">AWS S3</span>
+            <span class="stack-tag">Grafana</span>
+            <span class="stack-tag">Loki</span>
+            <span class="stack-tag">Jenkins</span>
+            <span class="stack-tag">MySQL</span>
+            <span class="stack-tag">Hibernate</span>
+          </div>
+        </div>
 
+        <div class="exp-item fade-up">
+          <div class="exp-period">2023 · INTERNSHIP</div>
+          <div class="exp-title">Java Development Intern</div>
+          <div class="exp-company">CodeClause · Remote</div>
+          <div class="exp-domain">Java · Backend</div>
+          <ul class="exp-bullets">
+            <li>Developed Java-based backend modules and REST APIs as part of internship programme.</li>
+            <li>Gained hands-on experience with core Java, OOP patterns, and basic Spring framework concepts.</li>
+          </ul>
+          <div class="exp-stack">
+            <span class="stack-tag">Java</span>
+            <span class="stack-tag">Spring</span>
+            <span class="stack-tag">REST</span>
+          </div>
+        </div>
 
+        <div class="exp-item fade-up">
+          <div class="exp-period">2023 · INTERNSHIP</div>
+          <div class="exp-title">Java Development Intern</div>
+          <div class="exp-company">LGM (Let's Grow More) · Remote</div>
+          <div class="exp-domain">Java · Development</div>
+          <ul class="exp-bullets">
+            <li>Contributed to Java development tasks, implementing features and improving code quality under mentor guidance.</li>
+          </ul>
+          <div class="exp-stack">
+            <span class="stack-tag">Java</span>
+            <span class="stack-tag">OOP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="sec-header fade-up">
+        <div class="sec-tag">// key projects</div>
+        <h2 class="sec-title">Things I've built</h2>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card fade-up">
+          <div class="project-header">
+            <span class="project-icon">💳</span>
+            <span class="project-badge">Production</span>
+          </div>
+          <div class="project-title">Co-branded Credit Card Platform</div>
+          <p class="project-desc">End-to-end backend for a FinTech credit card product — card lifecycle APIs, limit management, transaction event processing, and fraud signal hooks. Handles real financial transactions in production.</p>
+          <div class="exp-stack">
+            <span class="stack-tag">Spring Boot</span>
+            <span class="stack-tag">AWS SQS</span>
+            <span class="stack-tag">Microservices</span>
+            <span class="stack-tag">MySQL</span>
+          </div>
+        </div>
 
-					</div>
-				</div>
-			</div>
-			<div class="scrollDown">
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
-		</div>
-		</div>
-		</button>
-		<div class="glyphicon glyphicon-arrow-down"></div>
-	</section>
+        <div class="project-card fade-up">
+          <div class="project-header">
+            <span class="project-icon">📊</span>
+            <span class="project-badge">Observability</span>
+          </div>
+          <div class="project-title">Grafana / Loki Monitoring Layer</div>
+          <p class="project-desc">Built a full observability stack for the credit card platform — structured log aggregation with Loki, custom Grafana dashboards per service, and PagerDuty-integrated alerting for P1 incidents.</p>
+          <div class="exp-stack">
+            <span class="stack-tag">Grafana</span>
+            <span class="stack-tag">Loki</span>
+            <span class="stack-tag">CloudWatch</span>
+            <span class="stack-tag">Alerting</span>
+          </div>
+        </div>
 
-	<section class="ftco-about img ftco-section ftco-no-pt ftco-no-pb" id="about-section">
-		<div class="container">
-			<div class="row d-flex no-gutters">
-				<div class="col-md-6 col-lg-6 d-flex">
-					<div class="img-about img d-flex align-items-stretch">
-						<div class="overlay"></div>
-						<div class="img d-flex align-self-stretch align-items-center"
-							style="background-image:url(./images/img/template.jpg);">
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-6 pl-md-5 py-5">
-					<div class="row justify-content-start pb-3">
-						<div class="col-md-12 heading-section ftco-animate">
-							<br>
-							<h2 class="mb-4">About Me</h2>
-							<ul class="about-info mt-4 px-md-0 px-2">
-								<li class="d-flex"><span>Name:</span><span>Alur Mohammed Yaseer</span></li>
-								<li class="d-flex"><span>Email:</span><span>yaseeralur03@gmail.com</span></li>
-								<li class="d-flex"><span>Phone:</span><span>+91 7386861647</span></li>
-								<li class="d-flex"><span>City:</span><span>Adoni</span></li>
-								<li class="d-flex"><span>Country:</span> <span>India</span></li>
-							</ul>
-							<br>
-							<br>
-							<b>Here's about me:</b>
-							<br>
-							<br>
-							<p>A B.Tech graduate in Computer Science from St. Johns College of Engineering, located in Yerrakota, Yemminganur, Kurnool District.</p>
-							<p>Affiliated to Jawaharlal Nehru Technological University Anantapur.</p>
-							<p>Intermediate in MPC Group at Akshara shree junior college Adoni.</p>
-							<p>SSC at Narayana Group Of Schools Adoni.</p>
-							<p>Currently working as a <strong>Junior Software Engineer</strong> at <strong>Saven Technologies Ltd</strong>, where I am gaining hands-on experience in <strong>Java</strong>, <strong>Hibernate</strong>, <strong>Spring Boot</strong>, <strong>SQL</strong>,<strong>AWS</strong>,<strong>Grafana</strong> and <strong>Loki</strong>.</p>
-<p>Currently focused on the Java stack.</p>
+        <div class="project-card fade-up">
+          <div class="project-header">
+            <span class="project-icon">⚡</span>
+            <span class="project-badge">Event-driven</span>
+          </div>
+          <div class="project-title">AWS SQS Event Pipeline</div>
+          <p class="project-desc">Architected async event pipeline using AWS SQS to fan out card events to billing and notification services. Guaranteed at-least-once delivery with dead-letter queue handling for failed events.</p>
+          <div class="exp-stack">
+            <span class="stack-tag">AWS SQS</span>
+            <span class="stack-tag">DLQ</span>
+            <span class="stack-tag">Spring Boot</span>
+            <span class="stack-tag">Event-driven</span>
+          </div>
+        </div>
 
-						</div>
-					</div>
-					<div class="counter-wrap ftco-animate d-flex mt-md-3">
-						<div class="text">
-							<br>
-							<br>
-							<!-- <p><a href="./images/certificates/Yaseer's Resume.pdf" class="btn btn-primary py-3 px-3" target = "_blank">Resume</a></p> -->
-							<p><a class="btn btn-primary py-3 px-3" target = "_blank">Resume</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+        <div class="project-card fade-up">
+          <div class="project-header">
+            <span class="project-icon">🔗</span>
+            <span class="project-badge">Integration</span>
+          </div>
+          <div class="project-title">Bank & Payment Network Adapters</div>
+          <p class="project-desc">Built integration adapters for third-party banking and payment network APIs — normalising external data formats into internal domain models with robust error handling and retry logic.</p>
+          <div class="exp-stack">
+            <span class="stack-tag">REST APIs</span>
+            <span class="stack-tag">Adapters</span>
+            <span class="stack-tag">Hibernate</span>
+            <span class="stack-tag">AWS Secrets Manager</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	<section class="ftco-section ftco-no-pb goto-here" id="Qualification-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3">
-					<nav id="navi">
-						<ul>
-							<li><a href="#page-1">Education</a></li>
-							<li><a href="#page-3">Skills</a></li>
-						</ul>
-					</nav>
-				</div>
-				<div class="col-md-9">
-					<div id="page-1" class="page one">
-						<h2 class="heading">Education</h2>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-graduation-cap"></span>
-							</div>
-							<div class="text pl-3">
-								<h2>St.Johns College of Engineering & Technology</h2>
-								<span class="position">Bachelor Of Technology</span>
-								<p><strong>Computer Science and Engineering</strong></p>
-								<p>Kurnool - India</p>
-								<span class="date">2020-2024</span>
-							</div>
-						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-book"></span>
-							</div>
-							<div class="text pl-3">
-								<h2>Akshara junior College</h2>
-								<span class="position">Intermediate</span>
-								<p>Adoni - India</p>
-								<span class="date">2018-2020</span>
-							</div>
-						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-book"></span>
-							</div>
-							<div class="text pl-3">
-								<h2>Narayana Group Of Schools</h2>
-								<span class="position">SSC</span>
-								<p>Adoni - India</p>
-								<span class="date">2017-2018</span>
-							</div>
-						</div>
-					</div>
+  <!-- CERTIFICATIONS -->
+  <section id="certs">
+    <div class="container">
+      <div class="sec-header fade-up">
+        <div class="sec-tag">// certifications & achievements</div>
+        <h2 class="sec-title">Credentials</h2>
+      </div>
+      <div class="certs-grid">
+        <div class="cert-card fade-up">
+          <span class="cert-icon">☕</span>
+          <div>
+            <div class="cert-name">Java Fundamentals</div>
+            <div class="cert-issuer">SoloLearn</div>
+          </div>
+        </div>
+        <div class="cert-card fade-up">
+          <span class="cert-icon">📘</span>
+          <div>
+            <div class="cert-name">Learn Java</div>
+            <div class="cert-issuer">CodeChef</div>
+          </div>
+        </div>
+        <div class="cert-card fade-up">
+          <span class="cert-icon">🌐</span>
+          <div>
+            <div class="cert-name">Full Stack Development (MERN)</div>
+            <div class="cert-issuer">SmartInternz · APSCHE</div>
+          </div>
+        </div>
+        <div class="cert-card fade-up">
+          <span class="cert-icon">💻</span>
+          <div>
+            <div class="cert-name">Front End Development</div>
+            <div class="cert-issuer">Edunet Foundation</div>
+          </div>
+        </div>
+        <div class="cert-card fade-up">
+          <span class="cert-icon">🏅</span>
+          <div>
+            <div class="cert-name">Java Internship Certificate</div>
+            <div class="cert-issuer">CodeClause</div>
+          </div>
+        </div>
+        <div class="cert-card fade-up">
+          <span class="cert-icon">🏅</span>
+          <div>
+            <div class="cert-name">Java Internship Certificate</div>
+            <div class="cert-issuer">Let's Grow More</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-					<div id="page-3" class="page three">
-						<h2 class="heading">Skills</h2>
-						<!-- Skill Section -->
-					<div class="row mb-4 ftco-animate">
-<!--     <div class="col grow"><img class="img-fluid" src="images/skills/c.png" title="C"></div> -->
-    <div class="col grow"><img class="img-fluid" src="images/skills/icons8-java-48.png" title="Java"></div>
-<div class="col grow"><img class="img-fluid" src="images/skills/icons8-spring-boot-48.png" title="Spring Boot"></div> 
-    <div class="col grow"><img class="img-fluid" src="images/skills/icons8-hibernate-40.png" title="Hibernate"></div> 
-</div>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <div class="sec-header fade-up">
+            <div class="sec-tag">// contact</div>
+            <h2 class="sec-title">Let's connect</h2>
+          </div>
+          <p class="fade-up" style="color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:2rem">
+            I'm actively looking for Java Backend / Software Engineer roles in FinTech, product companies, or startups in Hyderabad or remote. Feel free to reach out for opportunities, collaborations, or just a tech chat.
+          </p>
+          <div class="contact-links fade-up">
+            <a href="mailto:yaseeralur03@gmail.com" class="contact-link">
+              <span class="contact-link-icon">✉️</span>
+              yaseeralur03@gmail.com
+            </a>
+            <a href="tel:+917386861647" class="contact-link">
+              <span class="contact-link-icon">📱</span>
+              +91 7386861647
+            </a>
+            <a href="https://www.linkedin.com/in/alur-mohammed-yaseer-43b249217/" target="_blank" class="contact-link">
+              <span class="contact-link-icon">🔗</span>
+              linkedin.com/in/alur-mohammed-yaseer
+            </a>
+            <a href="https://github.com/Yaseer-03" target="_blank" class="contact-link">
+              <span class="contact-link-icon">🐙</span>
+              github.com/Yaseer-03
+            </a>
+          </div>
+        </div>
 
- 	<div class="row mb-4 ftco-animate"> 
-		<div class="col grow"><img class="img-fluid" src="images/skills/icons8-postman-api-48.png" title="Postman"></div> 
-    <div class="col grow"><img class="img-fluid" src="images/skills/Mysql.png" title="MySQL"></div>
-<!-- 							<div class="col grow"><img class="img-fluid" src="images/skills/html.png" title="HTML"></div>
-							<div class="col grow"><img class="img-fluid" src="images/skills/css.png" title="CSS"></div>
-							<div class="col grow"><img class="img-fluid" src="images/skills/bootstrap.png" title="Bootstrap"></div>
-							<div class="col grow"><img class="img-fluid" src="images/skills/tallwind.png" title="Tallwind CSS"></div> --> 
-	</div>
-					</div>
-	</section>
-	<!---certificates Section-->
+        <div class="contact-form-wrap fade-up">
+          <form method="POST" action="https://formsubmit.co/yaseeralur03@gmail.com">
+            <div class="form-group">
+              <label class="form-label">Your Name</label>
+              <input type="text" name="name" class="form-input" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" name="email" class="form-input" placeholder="john@company.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea name="message" class="form-textarea" placeholder="Hi Yaseer, I have an opportunity..." required></textarea>
+            </div>
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="Portfolio Contact - New Message">
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Send Message →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	<section class="ftco-section" id="certificate-section">
-		<div class="container-fluid px-md-5">
-			<div class="row justify-content-center py-5 mt-5">
-				<div class="col-md-12 heading-section text-center ftco-animate">
-					<h2 class="mb-4">Achievements</h2>
-				</div>
-			</div>
-			<div class="row">
-				<!--certificate 1-->
-				<div class="col-md-4 text-center d-flex mx-auto ftco-animate">
-					<a class="services-1 shadow" target="_blank" a href="./images/certificates/Edunet(FED).jpeg">
-						<div class="desc">
-							<img src="./images/certificates/Edunet(FED).jpeg" alt="">
-							<p><strong>Web • Development</strong></p>
-						</div>
-					</a>
-				</div>
-				<!-------certificate 2-------->
-				<div class="col-md-4 text-center d-flex mx-auto ftco-animate">
-					<a href="./images/certificates/solojavabasic.jpg" target="_blank" class="services-1 shadow">
-						<div class="desc">
-							<img src="./images/certificates/solojavabasic.jpg" alt="">
-							<p><strong>Java • Fundamentals</strong></p>
-							<p>
-							</p>
-						</div>
-					</a>
-				</div>
-				<!-------certificate 3-------->
-				<div class="col-md-4 text-center d-flex mx-auto ftco-animate">
-					<a href="./images/certificates/CodeChef(Learn Java).pdf" target="_blank" class="services-1 shadow">
-						<div class="desc">
-							<img src="./images/certificates/CodeChef.png" alt="">
-							<p><strong> Java (CodeChef) </strong></p>
-							<p>
-							</p>
-						</div>
-					</a>
-				</div>
-				<!--certificate 4-->
-				<div class="col-md-4 text-center d-flex mx-auto ftco-animate">
-					<a href="./images/certificates/Internship Completion Certificate.pdf" target="_blank" class="services-1 shadow">
-						<div class="desc">
-							<img src="./images//certificates/codeclauseIntern1.jpeg" alt="">
-							<p><strong>Java Intern</strong></p>
-							<p></p>
-						</div>
-					</a>
-				</div>
-				<!--certificate 5-->
-				<div class="col-md-4 text-center d-flex mx-auto ftco-animate">
-					<a href="./images/certificates/LGM internship certificate.pdf" target="_blank" class="services-1 shadow">
-						<div class="desc">
-							<img src="./images/certificates/lgm intern.jpeg" alt="">
-							<p><strong>Java Intern</strong></p>
-							<p></p>
-						</div>
-					</a>
-				</div>			
-				<!--certificate 6-->
-				<div class="col-md-4 text-center d-flex mx-auto ftco-animate">
-					<a href="./images/certificates/EDUNET_03.pdf" target="_blank" class="services-1 shadow">
-						<div class="desc">
-							<img src="./images/certificates/Edunet_03.jpg" alt="">
-							<p><strong> Front End Development (Intern) </strong></p>
-							<p>
-							</p>
-						</div>
-					</a>
-				</div>
-				<!-------certificate 7-------->
-				<div class="col-md-4 text-center d-flex mx-auto ftco-animate">
-					<a href="https://apsche.smartinternz.com/certificate/student/95f2f36b3b166f7fc9bc87698ad0c7ac" class="services-1 shadow">
-						<div class="desc">
-							<img src="./images/certificates/SmartInternz.jpg" alt="">
-							<p><strong> Full Stack Development (MERN) </strong></p>
-							<p>
-							</p>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-		</div>
-		</div>
-	</section>
+  <!-- FOOTER -->
+  <footer>
+    <p>Designed & built by <span>Alur Mohammed Yaseer</span> · <span id="yr"></span></p>
+  </footer>
 
-	<!------Certificates end--------->
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
 
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.12 });
 
-	<!---contact Section---->
-
-	<section class="ftco-section contact-section ftco-no-pb" id="contact-section">
-		<div class="container">
-			<div class="row justify-content-center mb-4 pb-3">
-				<div class="col-md-7 heading-section text-center ftco-animate">
-					<h2 class="mb-4">Connect With Me</h2>
-				</div>
-			</div>
-
-			<div class="row d-flex justify-content-center contact-info mb-5">
-				<div class="col-md-6 col-lg-3 d-flex ftco-animate">
-					<div class="align-self-stretch box text-center p-4 shadow">
-						<div class="icon d-flex align-items-center justify-content-center">
-							<span class="icon-phone2"></span>
-						</div>
-						<div>
-							<h3 class="mb-4">Phone</h3>
-							<p><a>+91 7386861647</a></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-4 d-flex ftco-animate">
-					<div class="align-self-stretch box text-center p-4 shadow">
-						<div class="icon d-flex align-items-center justify-content-center">
-							<span class="icon-paper-plane"></span>
-						</div>
-						<div>
-							<h3 class="mb-4">Email Address</h3>
-							<p><a>yaseeralur03gmail.com</a></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3 d-flex ftco-animate">
-					<div class="align-self-stretch box text-center p-4 shadow">
-						<div class="icon d-flex align-items-center justify-content-center">
-							<span class="icon-globe"></span>
-						</div>
-						<div>
-							<h3 class="mb-4">Website</h3>
-							<p><a href="https://yaseer-03.github.io/Portfolio/">yaseer-03.github.io</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="row no-gutters block-9">
-				<div class="col-md-6 order-md-last d-flex">
-					<form method="POST" action="https://formsubmit.co/1b62bd6dd4ad42febe125d8f4137ab42" class="bg-light p-4 p-md-5 contact-form">
-						<div class="form-group">
-							<input type="text" class="form-control" name="name" placeholder="Your Name" required>
-						</div>
-						<div class="form-group">
-							<input type="email" class="form-control" name="email" placeholder="Your Email" required>
-						</div>
-						<div class="form-group">
-							<textarea id="" cols="30" rows="7" class="form-control" name="message" placeholder="Message"
-								required></textarea>
-						</div>
-
-						<div class="form-group">
-							<input type="submit" name="send" value="Submit" class="btn btn-primary py-3 px-5">
-<!-- 							<input type="hidden" name="_next" value="index.html"> -->
-							<input type="hidden" name="_captcha" value="false">
-						</div>
-					</form>
-
-				</div>
-
-				<div class="col-md-6 d-flex">
-					<div class="img"
-						style="background-image: url(./images/img/map.jpg);">
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- footer -->
-	<footer class="ftco-footer ftco-section">
-		<div class="container">
-			<div class="row mb-5">
-				<div class="col-md">
-					<div class="ftco-footer-widget mb-4">
-						<h2 class="ftco-heading-2">About</h2>
-						<p>I like working with new tools and technologies.<br> Excited to learn new technologies and creating tech related content</p>
-						<p class="mt-4"><u></u></p>
-						<ul class="ftco-footer-social list-unstyled float-md-left float-lft">
-							<li class="ftco-animate"><a href="https://github.com/Yaseer-03" target="_blank"><span
-										class="icon-github"></span></a></li>
-							<li class="ftco-animate"><a
-									href="https://www.linkedin.com/in/alur-mohammed-yaseer-43b249217/"
-									target="_blank"><span class="icon-linkedin-square"></span></a></li>
-							<li class="ftco-animate"><a href="https://twitter.com/yaseeralur03" target="_blank"><span
-										class="icon-twitter"></span></a></li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="col-md">
-					<div class="ftco-footer-widget mb-4">
-						<h2 class="ftco-heading-2">Connect With Me</h2>
-						<div class="block-23 mb-3">
-							<ul>
-								<li><a><span class="icon icon-phone"></span><span class="text">+91 7386861647</span></a>
-								</li>
-								<li><a><span class="icon icon-envelope"></span><span
-											class="text">yaseeralur03gmail.com</span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12 text-center">
-					<p class="mt-5">Copyright &#169
-						<script>document.write(new Date().getFullYear());</script>. Developed with <code>&lt;/&gt;</code> by Yaseer
-					</p>
-				</div>
-			</div>
-		</div>
-	</footer>
-
-
-
-	<!-- loader -->
-	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-				stroke="#F96D00" />
-		</svg></div>
-
-
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery-migrate-3.0.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.waypoints.min.js"></script>
-	<script src="js/jquery.stellar.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/aos.js"></script>
-	<script src="js/jquery.animateNumber.min.js"></script>
-	<script src="js/scrollax.min.js"></script>
-	<script src="js/particles.min.js"></script>
-	<script src="js/app.js"></script>
-	<script src="js/main.js"></script>
-
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
 </body>
-
 </html>
