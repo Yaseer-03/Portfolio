@@ -1071,9 +1071,10 @@
             <span class="role">Java Backend Engineer</span>
           </h1>
           <p class="hero-desc">
-          2+ years working on a FinTech co-branded credit card platform built on
-          <strong style="color:var(--text)">microservices architecture</strong> —
-          designing REST APIs, event-driven pipelines & production observability
+          2+ years experienced Java Backend Engineer, worked on a FinTech 
+          co-branded credit card platform built on 
+          <strong style="color:var(--text)">microservices architecture</strong> — 
+          REST APIs, event-driven pipelines &amp; production observability 
           at <strong style="color:var(--text)">Saven Technologies Ltd</strong>.
           </p>
           <div class="hero-btns">
@@ -1152,8 +1153,7 @@
             <p>I work on <strong>RESTful APIs</strong> with Spring Boot, async event pipelines via <strong>AWS
                 SQS</strong>, and production observability using <strong>Grafana, Loki &amp; Percona</strong>.</p>
             <p><strong>B.Tech CSE</strong> graduate from St. Johns College of Engineering, Jawaharlal Nehru
-              Technological University Anantapur (2020–2024). Currently open to backend engineering roles in FinTech or
-              product companies.</p>
+              Technological University Anantapur (2020–2024).</p>
           </div>
         </div>
       </div>
@@ -1458,12 +1458,12 @@
       <div class="contact-grid">
         <div>
           <div class="sec-header fade-up">
-            <div class="sec-tag">// contact</div>
+            <div class="sec-tag">contact</div>
             <h2 class="sec-title">Let's connect</h2>
           </div>
           <p class="fade-up" style="color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:2rem">
-            I'm actively looking for Java Backend / Software Engineer roles in FinTech, product companies, or startups
-            in Hyderabad or remote. Feel free to reach out for opportunities, collaborations, or just a tech chat.
+            I'm actively looking for Java Backend / Software Engineer in Hyderabad | Bengaluru or remote. 
+            Feel free to reach out for opportunities, collaborations, or just a tech chat.
           </p>
           <div class="contact-links fade-up">
             <a href="mailto:yaseeralur03@gmail.com" class="contact-link"><span
@@ -1528,83 +1528,84 @@
     <p>Designed &amp; built by <span>Alur Mohammed Yaseer</span> &middot; <span id="yr"></span></p>
   </footer>
 
-  <script>
-    document.getElementById('yr').textContent = new Date().getFullYear();
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
 
-    /* ── CONTACT FORM — AJAX (no redirect) ── */
-    document.getElementById('contact-form').addEventListener('submit', async function (e) {
-      e.preventDefault();
+  /* ── CONTACT FORM — AJAX (no redirect) ── */
+  document.getElementById('contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    e.stopPropagation();
 
-      const btn = document.getElementById('submit-btn');
-      const error = document.getElementById('form-error');
+    const btn   = document.getElementById('submit-btn');
+    const error = document.getElementById('form-error');
 
-      // loading state
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-      error.style.display = 'none';
+    btn.disabled    = true;
+    btn.textContent = 'Sending…';
+    error.style.display = 'none';
 
-      const data = new FormData();
-      data.append('name', document.getElementById('f-name').value);
-      data.append('email', document.getElementById('f-email').value);
-      data.append('message', document.getElementById('f-message').value);
-      data.append('_captcha', 'false');
-      data.append('_subject', 'Portfolio Contact - New Message');
+    const data = new FormData();
+    data.append('name',     document.getElementById('f-name').value);
+    data.append('email',    document.getElementById('f-email').value);
+    data.append('message',  document.getElementById('f-message').value);
+    data.append('_captcha', 'false');
+    data.append('_subject', 'Portfolio Contact - New Message');
 
-      try {
-        const res = await fetch('https://formsubmit.co/ajax/yaseeralur03@gmail.com', {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: data
-        });
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/yaseeralur03@gmail.com', {
+        method:  'POST',
+        headers: { 'Accept': 'application/json' },
+        body:    data
+      });
 
-        if (res.ok) {
-          // show success, hide form
-          document.getElementById('contact-form').style.display = 'none';
-          document.getElementById('form-success').style.display = 'flex';
-        } else {
-          throw new Error('Failed');
-        }
-      } catch {
-        error.style.display = 'block';
-        btn.disabled = false;
-        btn.textContent = 'Send Message →';
+      const json = await res.json();
+
+      if (json.success === 'true' || json.success === true || res.ok) {
+        document.getElementById('contact-form').style.display  = 'none';
+        document.getElementById('form-success').style.display  = 'flex';
+      } else {
+        throw new Error('Failed');
+      }
+    } catch {
+      error.style.display = 'block';
+      btn.disabled        = false;
+      btn.textContent     = 'Send Message →';
+    }
+  });
+
+  function resetForm() {
+    document.getElementById('contact-form').reset();
+    document.getElementById('contact-form').style.display  = '';
+    document.getElementById('form-success').style.display  = 'none';
+    document.getElementById('submit-btn').disabled         = false;
+    document.getElementById('submit-btn').textContent      = 'Send Message →';
+  }
+
+  /* ── MOBILE MENU ── */
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn  = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    btn.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  }
+
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* ── FADE-UP OBSERVER ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
       }
     });
+  }, { threshold: 0.12 });
 
-    function resetForm() {
-      document.getElementById('contact-form').reset();
-      document.getElementById('contact-form').style.display = '';
-      document.getElementById('form-success').style.display = 'none';
-      document.getElementById('submit-btn').disabled = false;
-      document.getElementById('submit-btn').textContent = 'Send Message →';
-    }
-
-    /* ── MOBILE MENU ── */
-    function toggleMobileMenu() {
-      const menu = document.getElementById('mobileMenu');
-      const btn = document.getElementById('hamburger');
-      menu.classList.toggle('open');
-      btn.classList.toggle('open');
-      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
-    }
-
-    function closeMobileMenu() {
-      document.getElementById('mobileMenu').classList.remove('open');
-      document.getElementById('hamburger').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    /* ── FADE-UP OBSERVER ── */
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        }
-      });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-  </script>
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
 </body>
 
 </html>
